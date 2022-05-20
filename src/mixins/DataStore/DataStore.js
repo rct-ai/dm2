@@ -248,6 +248,7 @@ export const DataStore = (
 
         self.highlighted = self.list[index];
         self.updated = guidGenerator();
+        getRoot(self.highlighted).startLabeling(self.highlighted);
       },
 
       focusNext() {
@@ -258,6 +259,7 @@ export const DataStore = (
 
         self.highlighted = self.list[index];
         self.updated = guidGenerator();
+        getRoot(self.highlighted).startLabeling(self.highlighted);
       },
     }));
 
