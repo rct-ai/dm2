@@ -11,6 +11,7 @@
  * interfacesModifier: function,
  * }} LSFOptions */
 
+import { info } from "../components/Common/Modal/Modal";
 import { FF_DEV_1621, FF_DEV_2186, isFF } from "../utils/feature-flags";
 import { isDefined } from "../utils/utils";
 // import { LSFHistory } from "./lsf-history";
@@ -397,6 +398,10 @@ export class LSFWrapper {
   /** @private */
   onSubmitAnnotation = async () => {
     await this.submitCurrentAnnotation("submitAnnotation", async (taskID, body) => {
+      if (body.result.length === 0) {
+        info({ title: "No annotations", body: "No annotations were submitted" });
+        return;
+      }
       return await this.datamanager.apiCall("submitAnnotation", { taskID }, { body });
     });
   };
@@ -407,6 +412,11 @@ export class LSFWrapper {
     const serializedAnnotation = this.prepareData(annotation);
 
     Object.assign(serializedAnnotation, extraData);
+
+    if (serializedAnnotation.result.length === 0) {
+      info({ title: "No annotations", body: "No annotations were submitted" });
+      return;
+    }
 
     await this.saveUserLabels();
 

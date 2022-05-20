@@ -85,6 +85,7 @@ export const info = ({ okText, onOkPress, ...props }) => {
           }}
           look="primary"
           size="compact"
+          autoFocus
         >
           {okText ?? "OK"}
         </Button>
