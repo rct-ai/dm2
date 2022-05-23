@@ -435,6 +435,11 @@ export class LSFWrapper {
 
     this.datamanager.invoke("updateAnnotation", ls, annotation, result);
 
+    if (this.datamanager.isExplorer) {
+      this.datamanager.store.dataStore.focusNext();
+      return;
+    }
+
     const isRejectedQueue = isDefined(task.default_selected_annotation);
 
     if (isRejectedQueue) {
@@ -608,6 +613,11 @@ export class LSFWrapper {
     }
 
     this.setLoading(false);
+
+    if (this.datamanager.isExplorer && loadNext) {
+      this.datamanager.store.dataStore.focusNext();
+      return;
+    }
 
     if (!loadNext || this.datamanager.isExplorer) {
       await this.loadTask(taskID, currentAnnotation.pk, true);
