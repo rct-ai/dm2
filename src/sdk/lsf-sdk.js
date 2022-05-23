@@ -126,6 +126,8 @@ export class LSFWrapper {
       interfaces = this.interfacesModifier(interfaces, this.labelStream);
     }
 
+    interfaces.push("skip");
+
     const lsfProperties = {
       user: options.user,
       config: this.lsfConfig,
@@ -397,11 +399,13 @@ export class LSFWrapper {
 
   /** @private */
   onSubmitAnnotation = async () => {
+    const serializedAnnotation = this.prepareData(this.currentAnnotation);
+
+    if (serializedAnnotation.result.length === 0) {
+      info({ title: "No annotations", body: "No annotations were submitted" });
+      return;
+    }
     await this.submitCurrentAnnotation("submitAnnotation", async (taskID, body) => {
-      if (body.result.length === 0) {
-        info({ title: "No annotations", body: "No annotations were submitted" });
-        return;
-      }
       return await this.datamanager.apiCall("submitAnnotation", { taskID }, { body });
     });
   };
@@ -614,7 +618,7 @@ export class LSFWrapper {
 
     this.setLoading(false);
 
-    if (this.datamanager.isExplorer && loadNext) {
+    if (result && this.datamanager.isExplorer && loadNext) {
       this.datamanager.store.dataStore.focusNext();
       return;
     }
