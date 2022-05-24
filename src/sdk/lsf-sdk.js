@@ -12,7 +12,7 @@
  * }} LSFOptions */
 
 import { info } from "../components/Common/Modal/Modal";
-import { FF_DEV_1621, FF_DEV_2186, isFF } from "../utils/feature-flags";
+import { FF_DEV_1621, isFF } from "../utils/feature-flags";
 import { isDefined } from "../utils/utils";
 // import { LSFHistory } from "./lsf-history";
 import { annotationToServer, taskToLSFormat } from "./lsf-utils";
@@ -94,9 +94,9 @@ export class LSFWrapper {
     if (this.labelStream) {
       interfaces.push("infobar");
       interfaces.push("topbar:prevnext");
-      if (FF_DEV_2186 && this.project.review_settings?.require_comment_on_reject) {
-        interfaces.push("comments:update");
-      }
+      // if (FF_DEV_2186 && this.project.review_settings?.require_comment_on_reject) {
+      //   interfaces.push("comments:update");
+      // }
       if (this.project.show_skip_button) {
         interfaces.push("skip");
       }
