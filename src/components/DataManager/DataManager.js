@@ -1,5 +1,5 @@
 import { inject, observer } from "mobx-react";
-import React from "react";
+import React from 'react';
 import { LSPlus } from "../../assets/icons";
 import { Block, Elem } from "../../utils/bem";
 import { Interface } from "../Common/Interface";
@@ -19,8 +19,29 @@ const injector = inject(({ store }) => {
   };
 });
 
-const summaryInjector = inject(({ store }) => {
+// const fetchAPI = async (url, headers) => {
+//   const response = await fetch(url, { headers });
+//   const data = await response.json();
+//
+//   return data;
+// };
+
+const summaryInjector = inject (({ store }) => {
   const { project, taskStore } = store;
+  // const [boxes, setBoxes] = useState(0);
+  //
+  // const headers = store.API.commonHeaders;
+  // const projectId = project.id;
+  // const viewId = viewsStore.selected.id;
+  // const url = 'http://0.0.0.0:8080/api/tasks?view=' + viewId +  '&project=' + projectId;
+
+  // useEffect(() => {
+  //   (async () => {
+  //     let data = await fetchAPI(url, headers);
+  //
+  //     setBoxes(data.boxes);
+  //   })();
+  // }, [boxes]);
 
   return {
     totalTasks: project?.task_count ?? project?.task_number ?? 0,
@@ -58,6 +79,7 @@ const ProjectSummary = summaryInjector((props) => {
           </span>
           <span>Annotations: {props.totalAnnotations}</span>
           <span>Predictions: {props.totalPredictions}</span>
+          <span>Boxes: 100</span>
         </Space>
       </span>
     </Space>
