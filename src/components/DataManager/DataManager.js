@@ -41,7 +41,7 @@ const summaryInjector = inject (({ store }) => {
 
       setBoxes(data.boxes);
     })();
-  }, [boxes]);
+  });
 
   return {
     totalTasks: project?.task_count ?? project?.task_number ?? 0,
