@@ -5,7 +5,8 @@ const config = require('./webpack.config-builder')({
   withDevServer: true
 });
 
-const port = 5000;
+// const port = 5000;
+const port = 4000;
 
 config.entry.main.unshift(
   `webpack-dev-server/client?http://localhost:${port}/`,

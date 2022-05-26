@@ -42,13 +42,15 @@ export const APIConfig = {
     },
 
     /** List of tasks (samples) in the dataset */
-    tasks: "/tasks",
+    // tasks: "/tasks",
+    tasks: "/../tasks",
 
     /** Per-task annotations (annotations, predictions) */
     annotations: "/views/:tabID/annotations",
 
     /** Single task (sample) */
-    task: "/tasks/:taskID",
+    // task: "/tasks/:taskID",
+    task: "/../tasks/:taskID",
 
     /** Next task (labelstream, default sequential) */
     nextTask: "/tasks/next",

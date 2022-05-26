@@ -33,7 +33,7 @@ const summaryInjector = inject (({ store }) => {
   const headers = store.API.commonHeaders;
   const projectId = project.id;
   const viewId = viewsStore.selected.id;
-  const url = 'http://8.210.252.185:8080/api/tasks?view=' + viewId +  '&project=' + projectId;
+  const url = 'http://8.210.252.185/:8080/api/tasks?view=' + viewId +  '&project=' + projectId;
 
   useEffect(() => {
     (async () => {
@@ -41,7 +41,7 @@ const summaryInjector = inject (({ store }) => {
 
       setBoxes(data.boxes);
     })();
-  }, [boxes]);
+  });
 
   return {
     totalTasks: project?.task_count ?? project?.task_number ?? 0,
