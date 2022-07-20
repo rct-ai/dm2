@@ -440,6 +440,9 @@ export class LSFWrapper {
     this.datamanager.invoke("updateAnnotation", ls, annotation, result);
 
     if (this.datamanager.isExplorer) {
+      const { taskID, currentAnnotation } = this;
+
+      await this.loadTask(taskID, currentAnnotation.pk, true);
       this.datamanager.store.dataStore.focusNext();
       return;
     }
@@ -619,6 +622,7 @@ export class LSFWrapper {
     this.setLoading(false);
 
     if (result && this.datamanager.isExplorer && loadNext) {
+      await this.loadTask(taskID, currentAnnotation.pk, true);
       this.datamanager.store.dataStore.focusNext();
       return;
     }
