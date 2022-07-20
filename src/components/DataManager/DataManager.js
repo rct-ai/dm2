@@ -33,7 +33,7 @@ const summaryInjector = inject (({ store }) => {
   const headers = store.API.commonHeaders;
   const projectId = project.id;
   const viewId = viewsStore.selected.id;
-  const url = 'http://0.0.0.0:9000/api/tasks?view=' + viewId +  '&project=' + projectId;
+  const url = 'http://192.168.0.181:9000/api/tasks?view=' + viewId +  '&project=' + projectId;
   // const url = 'https://label-studio.dev-metaverse.fun/api/tasks?view=' + viewId +  '&project=' + projectId;
 
   useEffect(() => {
